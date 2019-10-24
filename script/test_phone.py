@@ -23,12 +23,17 @@ class Test_phone():
     @allure.step(title='测试开始')
     @pytest.mark.parametrize('name,number',yaml_data())
     def test_input(self,name,number):
+        allure.attach('描述','点击添加号码')
         self.pp.phone_add()
+        allure.attach('描述','输入名字')
         self.pp.phone_inputname(name)
+        allure.attach('描述','输入号码')
         self.pp.phone_inputnumber(number)
+        allure.attach('描述','点击返回摁扭')
         back = WebDriverWait(self.driver,10,0.5).until(lambda x:x.find_element_by_accessibility_id('向上导航'))
         back.click()
         try:
+            allure.attach('描述','判断是否为第二页')
             self.pp.phong_b()
             self.driver.back()
         except:
