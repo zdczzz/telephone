@@ -20,7 +20,7 @@ class Test_phone():
         self.driver.quit()
 
 
-    @allure.step(title='测试开始')
+    @allure.step(title='测试开始!')
     @pytest.mark.parametrize('name,number',yaml_data())
     def test_input(self,name,number):
         allure.attach('描述','点击添加号码')
