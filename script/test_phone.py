@@ -1,10 +1,10 @@
+import allure
 from selenium.webdriver.support.wait import WebDriverWait
-# import allure
 from init.init_driver import init_driver
 from Page.page_phone import Page_Phone
 import pytest
-import time
 from init.read_yaml import read_yam
+
 def yaml_data():
     dt = read_yam('data1').get('Data')
     dt_list = []
@@ -13,15 +13,16 @@ def yaml_data():
     return dt_list
 
 class Test_phone():
+    @allure.step(title='初始化')
     def setup_class(self):
         self.driver = init_driver()
         self.pp = Page_Phone(self.driver)
-
+    @allure.step(title='结束测试')
     def teardown_class(self):
         self.driver.quit()
 
 
-
+    @allure.step(title='测试开始')
     @pytest.mark.parametrize('name,number',yaml_data())
     def test_input(self,name,number):
         self.pp.phone_add()
