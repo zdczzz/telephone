@@ -13,11 +13,9 @@ def yaml_data():
     return dt_list
 
 class Test_phone():
-    @allure.step(title='初始化')
     def setup_class(self):
         self.driver = init_driver()
         self.pp = Page_Phone(self.driver)
-    @allure.step(title='结束测试')
     def teardown_class(self):
         self.driver.quit()
 
